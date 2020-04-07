@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
+import { Route } from 'react-router-dom';
 import Header from './components/Header';
+import Login from './components/Login';
 import './App.css';
 
 class App extends Component {
@@ -26,8 +28,16 @@ class App extends Component {
           handleLogin={this.handleLogin}
           loggedIn={this.state.loggedIn}
         />
-
         <section id="content">
+
+          <Route 
+            exact path='/'
+            render={(props) => 
+              <Login 
+                handleLogin={this.handleLogin}
+              />
+            }
+          />
 
 
         </section>

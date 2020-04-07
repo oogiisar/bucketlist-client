@@ -20,7 +20,7 @@ class Header extends Component {
         } else {
             return (
                 <>
-                    <Link to='/login' className="account_nav">Login</Link>
+                    <Link to='/' className="account_nav">Login</Link>
                     <Link to='/signup' className="account_nav">Sign Up</Link>
                 </>
             )
