@@ -1,0 +1,10 @@
+* {
+    font-family: roboto, helvetica, sans-serif;
+    box-sizing: border-box;
+    margin: 0;
+}
+
+#content {
+    padding: 20px;
+    height: 100%;
+}
