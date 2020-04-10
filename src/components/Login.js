@@ -22,11 +22,11 @@ class LoginForm extends Component {
     handleSubmit = (e) => {
         e.preventDefault()
 
-        if(this.validateEmail() && this.validatePassword()) {
-            // Use the handleLogin function to update state in app to force a refresh of the header
-            this.props.handleLogin('true')
-            this.props.history.push(`/1/mybucket`)
-        }
+
+        // Use the handleLogin function to update state in app to force a refresh of the header
+        this.props.handleLogin('true')
+        this.props.history.push(`/1/mybucket`)
+        
     }
 
     updateEmail(email) {
@@ -81,15 +81,7 @@ class LoginForm extends Component {
     }
 
     validatePassword = () => {
-        const password = this.state.password.value
-
-        if(password.length < 6 || password.length > 72 ) {
-            this.setState({error: 'Password must be between 6 and 72 characters long'})
-        } else if( !password.match(/[0-9]/)) {
-            this.setState({error: 'Password must contain at least 1 number'})
-        } else {
-            return true
-        }
+        // This will be added as an endpoint in backend
 
     }
 
