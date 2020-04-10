@@ -1,0 +1,49 @@
+
+.Collapsible__trigger:hover {
+    background-color: darkgreen;
+    padding-right: 90%;
+    width: 100%;
+}
+
+.item {
+    background-color: rgba(50,100,83,.3);
+    border: 1px solid black;
+    margin-left: 20px;
+    text-align: left;
+}
+
+#newItem {
+    text-align: center;
+}
+
+#newItem input{
+    width: 80%;
+}
+
+.item p, .task p {
+    display: inline;
+}
+
+.checkbox {
+    display: inline;
+    text-align: right;
+}
+
+.tasks {
+    margin-bottom: 20px;
+}
+
+.task {
+    margin: 0 0px 0 40px;
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+    border-bottom: 1px solid black;
+}
+
+.task input {
+    width: 80%;
+}
+
+.checked {
+    text-decoration: line-through;
+}
