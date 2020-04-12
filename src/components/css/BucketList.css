@@ -6,8 +6,8 @@
 
 .Collapsible__trigger:hover {
     background-color: darkgreen;
-    padding-right: 90%;
-    width: 100%;
+    padding-right: 80%;
+    width: 80%;
 }
 
 .item {

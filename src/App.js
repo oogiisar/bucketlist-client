@@ -49,7 +49,7 @@ class App extends Component {
           />
 
           <Route
-            path='/:id/mybucket'
+            path='/:id/bucketlist'
             render={(props) =>
               <BucketList />
             }
