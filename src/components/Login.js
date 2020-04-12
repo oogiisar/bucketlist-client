@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { withRouter } from "react-router-dom";
+import TokenService from '../services/token-service';
+import AuthApiService from '../services/auth-api-service';
 import './css/Login.css';
 
 class LoginForm extends Component {
@@ -18,15 +20,28 @@ class LoginForm extends Component {
         }
     }
 
+    // Use the handleLogin function to update state in app to force a refresh of the header
+    onLoginSuccess = (authToken) => {
+        let user = TokenService.parseJwt(authToken)
+        this.props.handleLogin('true')
+        this.props.history.push(`/${user.user_is}/bucketlist`)
+    }
 
     handleSubmit = (e) => {
         e.preventDefault()
-
-
-        // Use the handleLogin function to update state in app to force a refresh of the header
-        this.props.handleLogin('true')
-        this.props.history.push(`/1/mybucket`)
+        this.setState({ error: null })
         
+        AuthApiService.postLogin({
+        email: this.state.email.value,
+        password: this.state.password.value,
+        })
+        .then(res => {
+            TokenService.saveAuthToken(res.authToken)
+            this.onLoginSuccess(res.authToken)
+        })
+        .catch(res => {
+            this.setState({ error: res.error })
+        })
     }
 
     updateEmail(email) {
@@ -80,14 +95,11 @@ class LoginForm extends Component {
         }
     }
 
-    validatePassword = () => {
-        // This will be added as an endpoint in backend
-
-    }
 
     render() {
         return (
             <>
+                <div className="error">{this.state.error}</div>
                 <h2>Intro Text</h2>
                 <fieldset className='loginContainer'>
                     <form

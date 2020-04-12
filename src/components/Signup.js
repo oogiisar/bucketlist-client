@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { withRouter } from "react-router-dom";
+import AuthApiService from '../services/auth-api-service';
 import './css/Login.css';
 
 class SignupForm extends Component {
@@ -14,7 +15,8 @@ class SignupForm extends Component {
                 value: '',
                 touched: false
             },
-            error: ''
+            error: '',
+            success: ''
         }
     }
 
@@ -23,8 +25,27 @@ class SignupForm extends Component {
         e.preventDefault()
         // Signup functionality to be added with backend
         if(this.validateEmail() && this.validatePassword()) {
-            // Use the handleLogin function to update state in app to force a refresh of the header
-            this.props.history.push(`/`)
+            AuthApiService.postUser({
+                email: this.state.email.value,
+                password: this.state.password.value
+            })
+            .then( () => {
+                // Reset the form
+                const email = {...this.state.email}
+                email.value = ''
+                email.touched = false
+                const password = {...this.state.password}
+                password.value = ''
+                password.touched = false
+                this.setState({
+                    email,
+                    password,
+                    success: 'Your user has been added'
+                })
+            })
+            .catch(res => {
+                this.setState({ error: res.error })
+            })
         }
     }
 
@@ -95,6 +116,8 @@ class SignupForm extends Component {
     render() {
         return (
             <>
+                <div className='success'>{this.state.success}</div>
+                <div className='error'>{this.state.error}</div>
                 <h2>Sign Up</h2>
                 <fieldset className='loginContainer'>
                     <form
@@ -109,10 +132,13 @@ class SignupForm extends Component {
                             Email 
                         </label>
                         <input
-                            required
+                            type="text"
+                            value={this.state.email.value}
                             onChange={e => this.updateEmail(e.target.value)}
                             name='email'
-                            id='LoginForm__email'>
+                            id='LoginForm__email'
+                            required
+                        >
                         </input>
                         </div>
                         <div className='password'>
@@ -123,6 +149,7 @@ class SignupForm extends Component {
                             required
                             name='password'
                             type='password'
+                            value={this.state.password.value}
                             onChange={e => this.updatePassword(e.target.value)}
                             id='LoginForm__password'>
                         </input>
