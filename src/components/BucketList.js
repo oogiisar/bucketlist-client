@@ -4,8 +4,8 @@ import NewBucket from './NewBucket';
 import Collapsible from 'react-collapsible';
 import TokenService from '../services/token-service';
 import { withRouter } from "react-router-dom";
-import './css/BucketList.css';
 import bucketListApiService from '../services/bucketlist-api-service';
+import './css/BucketList.css';
 
 
 class BucketList extends Component {
@@ -39,20 +39,24 @@ class BucketList extends Component {
         })
     }
 
-    addItem = () => {
-        this.setState({newItem: false})
+    addItem = (item) => {
+        let user = this.getUserId()
+        bucketListApiService.postItem(user, item)
     }
 
-    addTask = () => {
-        this.setState({newTask: false})
+    addTask = (task, item_id) => {
+        let user = this.getUserId()
+        bucketListApiService.postTask(user, item_id, task)
     }
 
-    handleAddTask = () => {
-        // Triggers addition to database and rerenders page. Will impliment with backend.
+    handleAddTask = (e) => {
+        e.preventDefault()
+        // Triggers addition to database and rerenders page. 
         this.setState({newTask: true})
     }
-    handleAddItem = () => {
-        // Triggers addition to database and rerenders page. Will impliment with backend.
+    handleAddItem = (e) => {
+        e.preventDefault()
+        // Triggers addition to database and rerenders page.
         this.setState({newItem: true})
     }
 
@@ -98,7 +102,7 @@ class BucketList extends Component {
                                     <div></div>
                                 }
                                 {this.state.newTask ?
-                                    <NewBucket addItem={this.addTask} />
+                                    <NewBucket type="task" item_id={data.item.id} addTask={this.addTask} />
                                 :
                                     <></>
                                 }
@@ -120,7 +124,7 @@ class BucketList extends Component {
                 <form>
                     {body}
                     {this.state.newItem ?
-                        <NewBucket addItem={this.addItem} />
+                        <NewBucket type="item" addItem={this.addItem} />
                     :
                         <></>
                     }

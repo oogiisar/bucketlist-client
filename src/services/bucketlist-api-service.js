@@ -44,7 +44,6 @@ const bucketListApiService = {
         completed: completed
 
     }
-    console.log(body)
     return fetch(`${config.API_ENDPOINT}/bucketlist/${user_id}`, {
       method: 'PATCH',
       headers: {
@@ -58,6 +57,48 @@ const bucketListApiService = {
           ? res.json().then(e => Promise.reject(e))
           : res.json()
       )
+  },
+  postItem(user_id, item) {
+    const body = {
+        type: 'item',
+        user_id: user_id,
+        item_id: '',
+        item: item
+    }
+    return fetch(`${config.API_ENDPOINT}/bucketlist/${user_id}`, {
+        method: 'POST',
+        headers: {
+          'content-type': 'application/json',
+          'authorization': `bearer ${TokenService.getAuthToken()}`
+        },
+        body: JSON.stringify(body),
+      })
+        .then(res =>
+          (!res.ok)
+            ? res.json().then(e => Promise.reject(e))
+            : res.json()
+        )
+  },
+  postTask(user_id, item_id, task) {
+    const body = {
+        type: 'task',
+        item_id: item_id,
+        item: task
+    }
+
+    return fetch(`${config.API_ENDPOINT}/bucketlist/${user_id}`, {
+        method: 'POST',
+        headers: {
+          'content-type': 'application/json',
+          'authorization': `bearer ${TokenService.getAuthToken()}`
+        },
+        body: JSON.stringify(body),
+      })
+        .then(res =>
+          (!res.ok)
+            ? res.json().then(e => Promise.reject(e))
+            : res.json()
+        )
   }
 }
 

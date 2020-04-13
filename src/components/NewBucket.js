@@ -8,12 +8,14 @@ class NewBucket extends Component {
             item: {
                 value: '',
                 touched: false
-            }
+            },
+            submitted: false,
+            error: ''
         }
     }
 
     updateItem(item) {
-        // Wait for setState before validating email
+        // Wait for setState before validating text present
         this.setState({item: {value: item, touched: true}}, () => {
             this.requireItem()
         })
@@ -34,20 +36,33 @@ class NewBucket extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault()
-        this.props.addItem()
+        if(this.props.type === 'task'){
+            this.props.addTask(this.state.item.value, this.props.item_id)
+        } else {
+            this.props.addItem(this.state.item.value)
+        }
+        this.setState({submitted: true})
 
     }
 
     render() {
         return(
-            <form 
+            <section 
                 key={this.props.key}
                 className="item newItem" 
-                onSubmit={this.handleSubmit}
             >
-                <input type="text" placeholder="New Item" />
-                <input type="submit" value="Submit" />
-            </form>
+                <div className="error">{this.state.error}</div>
+                {!this.state.submitted ? 
+                    <>
+                        <input type="text" placeholder="Description" onChange={e => this.updateItem(e.target.value)} />
+                        <input type="button" onClick={this.handleSubmit} value="Submit" />
+                    </>
+                :
+                        <div className="tooltip">{this.state.item.value}
+                            <span className="tooltiptext">Click save to commit changes</span>
+                        </div>
+                }
+            </section>
         )
     };
 }
