@@ -64,7 +64,6 @@ class BucketList extends Component {
         let user = this.getUserId()
         const checked = e.target.checked
         const toUpdate = e.target.name.split('_')
-        console.log(toUpdate)
         if(toUpdate[0] === 'item') {
             bucketListApiService.patchItem(user, toUpdate[1], checked)
         } else {

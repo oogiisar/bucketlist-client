@@ -100,7 +100,8 @@ class LoginForm extends Component {
         return (
             <>
                 <div className="error">{this.state.error}</div>
-                <h2>Intro Text</h2>
+                <h2>Stop dreaming about your bucket list and start living</h2>
+                <h3>This is a place to track all dreams you want to achieve in your lifetime</h3>
                 <fieldset className='loginContainer'>
                     <form
                         className='LoginForm'
