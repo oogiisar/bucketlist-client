@@ -1,3 +1,9 @@
+#intro {
+    text-align: center;
+}
+form {
+    border: hidden;
+}
 .LoginForm label{
     display: block;
     text-align: left;

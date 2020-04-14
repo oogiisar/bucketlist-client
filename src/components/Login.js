@@ -99,14 +99,16 @@ class LoginForm extends Component {
     render() {
         return (
             <>
-                <div className="error">{this.state.error}</div>
-                <h2>Stop dreaming about your bucket list and start living</h2>
-                <h3>This is a place to track all dreams you want to achieve in your lifetime</h3>
+                <section id="intro">
+                    <h2>Stop dreaming about your bucket list and start living</h2>
+                    <h3>This is a place to track all dreams you want to achieve in your lifetime</h3>
+                </section>
                 <fieldset className='loginContainer'>
                     <form
                         className='LoginForm'
                         onSubmit={this.handleSubmit}
                     >
+                        <div className="error">{this.state.error}</div>
                         <div role='alert'>
                             <p className='alert'>{this.state.error}</p>
                         </div>

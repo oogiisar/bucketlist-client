@@ -16,6 +16,7 @@ class BucketList extends Component {
             newTask: false,
             newItem: false,
             checkUpdate: false,
+            save: false,
             data: ''
         }
     }
@@ -40,11 +41,13 @@ class BucketList extends Component {
     }
 
     addItem = (item) => {
+        this.setState({save: true})
         let user = this.getUserId()
         bucketListApiService.postItem(user, item)
     }
 
     addTask = (task, item_id) => {
+        this.setState({save: true})
         let user = this.getUserId()
         bucketListApiService.postTask(user, item_id, task)
     }
@@ -105,7 +108,7 @@ class BucketList extends Component {
                                 :
                                     <></>
                                 }
-                                <button onClick={this.handleAddTask}>Add Task</button>
+                                {!this.state.newTask ? <button onClick={this.handleAddTask}>Add Task</button> : <></>}
                             </section>
                         </Collapsible>
                     </section>
@@ -127,8 +130,8 @@ class BucketList extends Component {
                     :
                         <></>
                     }
-                    <button onClick={this.handleAddItem}>Add Item</button>
-                    <input type='submit' value='Save'/>
+                    {!this.state.newItem ? <button onClick={this.handleAddItem}>Add Item</button> : <></>}
+                    {this.state.save ? <input type='submit' value='Save'/> : <></>}
                 </form>
             </>
         )

@@ -28,7 +28,11 @@ class NewBucket extends Component {
         const error = this.state.error;
 
         if(item.length === 0 && touched === true) {
-            this.setState({error: 'An Item is required'})
+            this.setState({
+                error: 'An Item is required',
+                item: {touched: false}
+            })
+            
         } else if( error !== '') {
             this.setState({error: ''})
         }
@@ -55,7 +59,7 @@ class NewBucket extends Component {
                 {!this.state.submitted ? 
                     <>
                         <input type="text" placeholder="Description" onChange={e => this.updateItem(e.target.value)} />
-                        <input type="button" onClick={this.handleSubmit} value="Submit" />
+                        <input type="button" onClick={this.handleSubmit} value="Submit" disabled={!this.state.item.touched}/>
                     </>
                 :
                         <div className="tooltip">{this.state.item.value}

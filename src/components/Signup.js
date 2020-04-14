@@ -116,8 +116,6 @@ class SignupForm extends Component {
     render() {
         return (
             <>
-                <div className='success'>{this.state.success}</div>
-                <div className='error'>{this.state.error}</div>
                 <h2>Sign Up</h2>
                 <fieldset className='loginContainer'>
                     <form
@@ -126,6 +124,7 @@ class SignupForm extends Component {
                     >
                         <div role='alert'>
                             <p className='alert'>{this.state.error}</p>
+                            <div className='success'>{this.state.success}</div>
                         </div>
                         <div className='email'>
                         <label htmlFor='LoginForm__email'>
