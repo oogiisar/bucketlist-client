@@ -115,51 +115,48 @@ class SignupForm extends Component {
 
     render() {
         return (
-            <>
-                <h2>Sign Up</h2>
-                <fieldset className='loginContainer'>
-                    <form
-                        className='LoginForm'
-                        onSubmit={this.handleSubmit}
+            <fieldset className='loginContainer'>
+                <form
+                    className='LoginForm'
+                    onSubmit={this.handleSubmit}
+                >
+                    <div role='alert'>
+                        <p className='alert'>{this.state.error}</p>
+                        <div className='success'>{this.state.success}</div>
+                    </div>
+                    <div className='email'>
+                    <label htmlFor='LoginForm__email'>
+                        Email 
+                    </label>
+                    <input
+                        type="text"
+                        value={this.state.email.value}
+                        onChange={e => this.updateEmail(e.target.value)}
+                        name='email'
+                        id='LoginForm__email'
+                        required
                     >
-                        <div role='alert'>
-                            <p className='alert'>{this.state.error}</p>
-                            <div className='success'>{this.state.success}</div>
-                        </div>
-                        <div className='email'>
-                        <label htmlFor='LoginForm__email'>
-                            Email 
-                        </label>
-                        <input
-                            type="text"
-                            value={this.state.email.value}
-                            onChange={e => this.updateEmail(e.target.value)}
-                            name='email'
-                            id='LoginForm__email'
-                            required
-                        >
-                        </input>
-                        </div>
-                        <div className='password'>
-                        <label htmlFor='LoginForm__password'>
-                            Password 
-                        </label>
-                        <input
-                            required
-                            name='password'
-                            type='password'
-                            value={this.state.password.value}
-                            onChange={e => this.updatePassword(e.target.value)}
-                            id='LoginForm__password'>
-                        </input>
-                        </div>
-                        
-                        <button type='submit'>
-                            Login
-                        </button>
-                    </form>
-                </fieldset>
-            </>
+                    </input>
+                    </div>
+                    <div className='password'>
+                    <label htmlFor='LoginForm__password'>
+                        Password 
+                    </label>
+                    <input
+                        required
+                        name='password'
+                        type='password'
+                        value={this.state.password.value}
+                        onChange={e => this.updatePassword(e.target.value)}
+                        id='LoginForm__password'>
+                    </input>
+                    </div>
+                    
+                    <button className="login__button" type='submit'>
+                        Sign up
+                    </button>
+                </form>
+            </fieldset>
         )
     }
 }

@@ -4,7 +4,7 @@ import Header from './components/Header';
 import Login from './components/Login';
 import Signup from './components/Signup';
 import BucketList from './components/BucketList';
-import './App.css';
+import './App.scss';
 
 class App extends Component {
 

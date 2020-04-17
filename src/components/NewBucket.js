@@ -40,6 +40,7 @@ class NewBucket extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault()
+        // Check if it is a task to route to the correct callback function
         if(this.props.type === 'task'){
             this.props.addTask(this.state.item.value, this.props.item_id)
         } else {
@@ -59,7 +60,7 @@ class NewBucket extends Component {
                 {!this.state.submitted ? 
                     <>
                         <input type="text" placeholder="Description" onChange={e => this.updateItem(e.target.value)} />
-                        <input type="button" onClick={this.handleSubmit} value="Submit" disabled={!this.state.item.touched}/>
+                        <button className="lined thin" type="button" onClick={this.handleSubmit} disabled={!this.state.item.touched}>Submit</button>
                     </>
                 :
                         <div className="tooltip">{this.state.item.value}

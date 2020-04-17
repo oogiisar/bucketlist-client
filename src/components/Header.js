@@ -22,15 +22,15 @@ class Header extends Component {
         if(TokenService.hasAuthToken()) {
             return( 
                 <>
-                    <Link to='/' onClick={this.handleLogout} className="account_nav">Logout</Link>
-                    <Link to={`/${this.getUser()}/bucketlist`} className="account_nav">Account</Link>
+                    <Link to='/' onClick={this.handleLogout} className="account_nav right_nav">Logout</Link>
+                    <Link to={`/${this.getUser()}/bucketlist`} className="account_nav left_nav">Account</Link>
                 </>
             )
         } else {
             return (
                 <>
-                    <Link to='/' className="account_nav">Login</Link>
-                    <Link to='/signup' className="account_nav">Sign Up</Link>
+                    <Link to='/' className="account_nav right_nav">Login</Link>
+                    <Link to='/signup' className="account_nav left_nav">Sign Up</Link>
                 </>
             )
         }
@@ -39,7 +39,7 @@ class Header extends Component {
     render() {
         return(
             <nav role="navigation">
-                <Link to='/' className="logo">Bucket List</Link>
+                <Link to='/' className="logo"><span className="logo" id="red">B</span><span className="logo" id="pink">u</span><span className="logo" id="yellow">c</span><span className="logo"id="green">k</span><span className="logo" id="orange">e</span><span className="logo" id="purple">t</span> <span className="logo" id="brown">L</span><span className="logo" id="white">i</span><span className="logo" id="grey">s</span><span className="logo" id="dark">t</span></Link>
                 {this.accountStatus()}
             </nav>
         )

@@ -64,6 +64,7 @@ class BucketList extends Component {
     }
 
     handleCheck = (e) => {
+        this.setState({save: true})
         let user = this.getUserId()
         const checked = e.target.checked
         const toUpdate = e.target.name.split('_')
@@ -80,9 +81,10 @@ class BucketList extends Component {
         this.state.data !== '' ? 
             body =
                 this.state.data.map((data, i) =>
-                    <section key={i}>
+                    <section className="thisItem" key={i}>
+                        <input className="itemCheckbox option-input" type="checkbox" name={`item_${data.item.id}`} onChange={this.handleCheck} defaultChecked={data.item.completed} />
+                        {/*Add class checked if database returns checked true*/}
                         <Collapsible className={data.item.completed ? 'checked item' : 'item'} trigger={data.item.text}>
-                            <input className="checkbox" type="checkbox" name={`item_${data.item.id}`} onChange={this.handleCheck} defaultChecked={data.item.completed} />
                             <section className="tasks">
                                 {data.item.tasks.length !== 0 ? 
                                     data.item.tasks.map((task, i) =>
@@ -104,11 +106,12 @@ class BucketList extends Component {
                                     <div></div>
                                 }
                                 {this.state.newTask ?
+                                    // let the component know it is a task for processing as tasl
                                     <NewBucket type="task" item_id={data.item.id} addTask={this.addTask} />
                                 :
                                     <></>
                                 }
-                                {!this.state.newTask ? <button onClick={this.handleAddTask}>Add Task</button> : <></>}
+                                {!this.state.newTask ? <button onClick={this.handleAddTask} className="lined thin">Add Task</button> : <></>}
                             </section>
                         </Collapsible>
                     </section>
@@ -121,17 +124,20 @@ class BucketList extends Component {
             <>
                 <header>
                     <h2>Your Bucket items</h2>
-                    <p>Click item to expand</p>
+                    
                 </header>
-                <form>
+                <form className="bucketItems">
+                    <label>Click item to expand</label>
                     {body}
                     {this.state.newItem ?
+                        // let the component know it is a item for processing as item
                         <NewBucket type="item" addItem={this.addItem} />
                     :
                         <></>
                     }
-                    {!this.state.newItem ? <button onClick={this.handleAddItem}>Add Item</button> : <></>}
-                    {this.state.save ? <input type='submit' value='Save'/> : <></>}
+                    {/* conditional rendering on button if a new item or task has been added */}
+                    {!this.state.newItem ? <button onClick={this.handleAddItem} className="login__button">Add Item</button> : <></>}
+                    {this.state.save ? <button className="login__button save__button" type='submit' value='Save'>Save</button> : <></>}
                 </form>
             </>
         )

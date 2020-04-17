@@ -1,15 +1,38 @@
 #intro {
     text-align: center;
 }
-form {
-    border: hidden;
+#intro h3 {
+    margin: 20px 0;
+}
+.LoginContainer {
+    text-align: center;
+}
+.LoginForm {
+    text-align: center;
+
+}
+.email, .password {
+    width: 100%;
+    display: block;
+    margin: 0 auto;
+}
+.email input, .password input {
+    width: 80%;
 }
 .LoginForm label{
     display: block;
     text-align: left;
-    margin-bottom: 5px;
+    margin-left:  10%;
     font-weight: 600;
 }
+#LoginForm__email, #LoginForm__password{
+    margin: 0;
+}
+
+.login__button {
+    margin: 20px auto;
+}
+
 
 @media only screen and (min-width: 650px) {
     .LoginForm {
@@ -18,5 +41,11 @@ form {
     }
     .LoginForm label{
         font-size: 1.3em;
+    }
+    #intro h2 {
+        font-size: 2em;
+    }
+    #intro h3 {
+        font-size: 1.4em;
     }
 }

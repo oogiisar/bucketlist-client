@@ -1,0 +1,72 @@
+@import url(https://fonts.googleapis.com/css?family=Patrick+Hand+SC);
+
+* {
+    box-sizing: border-box;
+	margin: 0;
+	font-family: 'Patrick Hand SC';
+	font-size: 1.1rem;
+}
+
+#content {
+    padding: 20px;
+	height: 100%;
+    background-image: url(./img/background.jpg);
+	background-size: cover;
+	resize: vertical;
+	overflow: auto;
+
+}
+
+h2{
+	font-size: 1.8rem;
+	line-height: 1.7rem;
+}
+
+h3 {
+	font-size: 1.2rem;
+	line-height: 1.3rem;
+}
+
+button, .Collapsible__trigger{
+	background-color: rgb(230, 228, 232);
+	display: block;
+	align-self:center;
+	padding:.3rem 1rem;
+	margin:10px 1rem;
+	transition:all .5s ease;
+	color:#41403E;
+	font-size:1.5rem;
+	letter-spacing:1px;
+	outline:none;
+	box-shadow: 20px 38px 34px -26px hsla(0,0%,0%,.2);
+	border-radius: 255px 15px 225px 15px/15px 225px 15px 255px;
+	border:solid 3px rgb(75, 63, 117);
+	&:hover{
+	   box-shadow:2px 8px 4px -6px hsla(0,0%,0%,.3);
+	   cursor: pointer;
+	} 
+}
+button:disabled {
+	background-color: grey;
+	box-shadow:2px 8px 4px -6px hsla(0,0%,0%,.3);
+}
+
+input {
+	background-color: rgb(230, 228, 232);
+	align-self:center;
+	background:transparent;
+	padding:0 1rem;
+	margin:10px 1rem;
+	transition:all .5s ease;
+	color:#41403E;
+	font-size:1.5rem;
+	letter-spacing:1px;
+	outline:none;
+	box-shadow: 20px 38px 34px -26px hsla(0,0%,0%,.2);
+	border-radius: 255px 15px 225px 15px/15px 225px 15px 255px;
+	border:solid 3px rgb(75, 63, 117);
+}
+
+fieldset {
+	border: none;
+}

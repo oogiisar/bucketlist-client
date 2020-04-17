@@ -1,6 +1,7 @@
 
 .newItem input{
     width: 80%;
+    background-color: rgb(230, 228, 232);
 }
 
 .tooltip {
@@ -21,7 +22,7 @@
    
     /* Position the tooltip text - see examples below! */
     position: absolute;
-    z-index: 1;
+    z-index: 5;
   }
   
   /* Show the tooltip text when you mouse over the tooltip container */
